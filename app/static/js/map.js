@@ -1,9 +1,23 @@
-async function loadBuildings() {
-  const response = await fetch("/api/buildings?lat=7.22&lon=124.24&radius=100");
+export const map = L.map("map", {
+  center: [7.2, 124.2],
+  zoom: 11,
+});
 
-  const data = await response.json();
+// basemaps
+const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
+const satellite = L.tileLayer(
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+);
+const dark = L.tileLayer(
+  "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+);
 
-  console.log(data);
-}
+osm.addTo(map);
 
-loadBuildings();
+L.control
+  .layers({
+    Streets: osm,
+    Satellite: satellite,
+    Dark: dark,
+  })
+  .addTo(map);
