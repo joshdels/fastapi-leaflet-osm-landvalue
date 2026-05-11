@@ -14,8 +14,8 @@ const google = L.tileLayer(
 );
 
 var map = L.map("map", {
-  center: [7.2, 124.2],
-  zoom: 22,
+  center: [7.5, 125.22],
+  zoom: 17,
   layers: [osm],
 });
 
@@ -25,8 +25,8 @@ const baseMaps = {
   Google: google,
 };
 
-let amenityLayer = L.layerGroup().addTo(map);
 let buildingLayer = L.layerGroup().addTo(map);
+let amenityLayer = L.layerGroup().addTo(map);
 let roadLayer = L.layerGroup().addTo(map);
 
 const overlayMaps = {
@@ -35,10 +35,20 @@ const overlayMaps = {
   Amenities: amenityLayer,
 };
 
+var geocoder = new L.Control.Geocoder({
+  defaultMarkGeocode: false,
+  position: "topleft",
+})
+  .on("markgeocode", function (e) {
+    const center = e.geocode.center;
+    map.setView(center, 15);
+  })
+  .addTo(map);
+
 L.control
   .layers(baseMaps, overlayMaps, {
     collapsed: false,
-    position: "bottomright",
+    position: "bottomleft",
   })
   .addTo(map);
 
@@ -61,8 +71,8 @@ map.on("click", async function (e) {
   amenityLayer.clearLayers();
   roadLayer.clearLayers();
 
-  loadOSMData(lat, lng);
   loadAmenities(lat, lng);
+  loadOSMData(lat, lng);
   await loadOSMRoad(lat, lng);
   findNearestRoad(lat, lng);
 });
