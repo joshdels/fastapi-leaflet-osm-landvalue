@@ -1,0 +1,23 @@
+CLICK a point in the map
+FETCH data in the OSM
+
+IF OSM?
+  HOLD and Zoom to the place, disable 
+
+  Display osm map data
+
+  Calculate FootPrint Density
+  Calculate Road Density
+  Calculate the distance of the nearest 
+
+  RETURN raw data
+
+  THEN 
+    SHOW a report sidebar
+    Show a chart, 1 for Accessiblity, For Urban Level
+
+    Await Button to redraw
+
+ELSE 
+  WARN an ERROR if 404, 500
+

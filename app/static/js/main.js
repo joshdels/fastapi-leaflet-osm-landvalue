@@ -12,6 +12,7 @@ import {
 } from "./layers.js";
 import { findNearestRoad } from "./calculation.js";
 
+let circle = null;
 let marker = null;
 
 map.on("click", async (e) => {
@@ -19,18 +20,31 @@ map.on("click", async (e) => {
 
   if (marker) {
     map.removeLayer(marker);
+    map.removeLayer(circle);
   }
+
+  circle = L.circle([lat, lng], {
+    radius: 200,
+    color: "blue",
+    fillColor: "#3b82f6",
+    fillOpacity: 0.3,
+  }).addTo(map);
+
   marker = L.marker([lat, lng]).addTo(map);
 
-  buildingLayer.addTo(map);
-  amenityLayer.addTo(map);
+  map.flyTo([lat, lng], 17);
+
   roadLayer.addTo(map);
+  amenityLayer.addTo(map);
+  buildingLayer.addTo(map);
 
   clearLayers(buildingLayer, amenityLayer, roadLayer);
 
-  const buildingData = await fetchBuildings(lat, lng);
-  const roadData = await fetchRoads(lat, lng);
-  const amenityData = await fetchAmenities(lat, lng);
+  const [buildingData, roadData, amenityData] = await Promise.all([
+    fetchBuildings(lat, lng),
+    fetchRoads(lat, lng),
+    fetchAmenities(lat, lng),
+  ]);
 
   drawBuildings(buildingData, buildingLayer);
   drawRoads(roadData, roadLayer);
