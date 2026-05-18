@@ -11,11 +11,16 @@ import {
   buildRoadFeatures,
 } from "./layers.js";
 import { findNearestRoad } from "./calculation.js";
+import { generateData, disableGenerateData } from "./states.js";
 
 let circle = null;
 let marker = null;
 
 map.on("click", async (e) => {
+  if (!generateData) return;
+
+  disableGenerateData();
+
   const { lat, lng } = e.latlng;
 
   if (marker) {
@@ -45,6 +50,15 @@ map.on("click", async (e) => {
     fetchRoads(lat, lng),
     fetchAmenities(lat, lng),
   ]);
+
+  if (
+    !buildingData?.elements ||
+    !roadData?.elements ||
+    !amenityData?.elements
+  ) {
+    console.warn("API failed, skipping render");
+    return;
+  }
 
   drawBuildings(buildingData, buildingLayer);
   drawRoads(roadData, roadLayer);
