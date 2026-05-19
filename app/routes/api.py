@@ -26,7 +26,7 @@ def roads(lat: float, lon: float, radius: Optional[int]):
 
 
 @router.get("/amenities")
-def roads(lat: float, lon: float, radius: Optional[int]):
+def amenities(lat: float, lon: float, radius: Optional[int]):
     if radius is None:
         radius = 1000
 

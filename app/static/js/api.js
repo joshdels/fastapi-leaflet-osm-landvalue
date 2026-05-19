@@ -1,23 +1,23 @@
 export async function fetchBuildings(lat, lng) {
   const res = await fetch(`/api/buildings?lat=${lat}&lon=${lng}&radius=200`);
   const data = await res.json();
-  console.log("buildings")
-  console.log(data);
+  // console.log("buildings")
+  // console.log(data);
   return data;
 }
 
 export async function fetchRoads(lat, lng) {
   const res = await fetch(`/api/roads?lat=${lat}&lon=${lng}&radius=200`);
   const data = await res.json();
-  console.log("roads")
-  console.log(data);
+  // console.log("roads")
+  // console.log(data);
   return data;
 }
 
 export async function fetchAmenities(lat, lng) {
   const res = await fetch(`/api/amenities?lat=${lat}&lon=${lng}&radius=200`);
   const data = await res.json();
-  console.log("amenities")
-  console.log(data);
+  // console.log("amenities")
+  // console.log(data);
   return data;
 }

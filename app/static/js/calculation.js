@@ -1,3 +1,5 @@
+import { state } from "./storage.js";
+
 /**
  * Returns nearest road + distance
  */
@@ -24,4 +26,12 @@ export function findNearestRoad(lat, lng, roads) {
     road: nearest,
     distance: minDistance,
   };
+}
+
+export function getDistanceScore(distance) {
+  const maxDistance = 1000;
+
+  const percent = 100 * (1 - distance / maxDistance);
+
+  return Math.max(0, Math.min(100, Math.round(percent)));
 }

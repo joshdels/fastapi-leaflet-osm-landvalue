@@ -21,3 +21,8 @@ IF OSM?
 ELSE 
   WARN an ERROR if 404, 500
 
+------- For Scoring
+
+1. Decay Score
+- this is according to the close/far of the nearest road
+2. Building Density

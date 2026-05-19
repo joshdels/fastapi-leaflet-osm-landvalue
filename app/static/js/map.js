@@ -2,7 +2,7 @@ import { amenityLayer, buildingLayer, roadLayer } from "./layers.js";
 
 export const map = L.map("map", {
   center: [7.2, 124.2],
-  zoom: 11,
+  zoom: 8,
 });
 
 const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
@@ -14,6 +14,14 @@ const google = L.tileLayer(
 );
 
 osm.addTo(map);
+
+map.createPane("buildingsPane");
+map.createPane("roadsPane");
+map.createPane("amenitiesPane");
+
+map.getPane("buildingsPane").style.zIndex = 400;
+map.getPane("roadsPane").style.zIndex = 450;
+map.getPane("amenitiesPane").style.zIndex = 650;
 
 const baseMaps = {
   Streets: osm,

@@ -33,3 +33,13 @@ export function buildRoadFeatures(data) {
 
   return roads;
 }
+
+/**
+ * 
+  Formats the bind popups 
+ */
+export function formatTags(tags = {}) {
+  return Object.entries(tags)
+    .map(([key, value]) => `<b>${key}</b>: ${value}`)
+    .join("<br>");
+}
