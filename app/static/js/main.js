@@ -1,5 +1,9 @@
 import { map } from "./map.js";
 import { fetchAmenities, fetchBuildings, fetchRoads } from "./api.js";
+import { state } from "./storage.js";
+import { buildRoadFeatures } from "./transformers.js";
+import { findNearestRoad } from "./calculation.js";
+import { generateData, disableGenerateData } from "./states.js";
 import {
   clearLayers,
   drawBuildings,
@@ -8,42 +12,38 @@ import {
   buildingLayer,
   amenityLayer,
   roadLayer,
-  buildRoadFeatures,
+  resetMapLayers,
 } from "./layers.js";
-import { findNearestRoad } from "./calculation.js";
-import { generateData, disableGenerateData } from "./states.js";
-
-let circle = null;
-let marker = null;
 
 map.on("click", async (e) => {
   if (!generateData) return;
-
   disableGenerateData();
 
   const { lat, lng } = e.latlng;
+  resetMapLayers(map, state);
 
-  if (marker) {
-    map.removeLayer(marker);
-    map.removeLayer(circle);
+  if (state.marker) {
+    map.removeLayer(state.marker);
   }
 
-  circle = L.circle([lat, lng], {
+  if (state.circle) {
+    map.removeLayer(state.circle);
+  }
+
+  state.circle = L.circle([lat, lng], {
     radius: 200,
     color: "blue",
     fillColor: "#3b82f6",
     fillOpacity: 0.3,
   }).addTo(map);
 
-  marker = L.marker([lat, lng]).addTo(map);
+  state.marker = L.marker([lat, lng]).addTo(map);
 
   map.flyTo([lat, lng], 17);
 
   roadLayer.addTo(map);
   amenityLayer.addTo(map);
   buildingLayer.addTo(map);
-
-  clearLayers(buildingLayer, amenityLayer, roadLayer);
 
   const [buildingData, roadData, amenityData] = await Promise.all([
     fetchBuildings(lat, lng),
@@ -56,22 +56,26 @@ map.on("click", async (e) => {
     !roadData?.elements ||
     !amenityData?.elements
   ) {
-    console.warn("API failed, skipping render");
+    console.warn("API failed");
     return;
   }
 
-  drawBuildings(buildingData, buildingLayer);
-  drawRoads(roadData, roadLayer);
-  drawAmenities(amenityData, amenityLayer);
+  state.buildingDatas = buildingData;
+  state.roadDatas = roadData;
+  state.amenityDatas = amenityData;
 
-  // --- GEO CALCULATION (PURE LOGIC) ---
-  const roads = buildRoadFeatures(roadData);
+  drawBuildings(state.buildingDatas, buildingLayer);
+  drawRoads(state.roadDatas, roadLayer);
+  drawAmenities(state.amenityDatas, amenityLayer);
+
+  // Spatial analysis
+  const roads = buildRoadFeatures(state.roadDatas);
   const nearest = findNearestRoad(lat, lng, roads);
-
   if (!nearest) return;
 
-  console.log("Nearest road distance (m):", nearest.distance);
+  console.log("Nearest road distance:", nearest.distance);
 
+  // Highlight nearest road
   L.geoJSON(nearest.road, {
     style: {
       color: "green",

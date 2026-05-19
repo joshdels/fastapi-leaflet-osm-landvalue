@@ -1,39 +1,28 @@
-/**
- * Creates a single node to be drawn
- */
-function buildNodeMap(elements) {
-  const nodeMap = {};
-
-  elements.forEach((el) => {
-    if (el.type === "node") {
-      nodeMap[el.id] = [el.lat, el.lon];
-    }
-  });
-
-  return nodeMap;
-}
+import { buildNodeMap } from "./transformers.js";
 
 export const buildingLayer = L.layerGroup();
 export const roadLayer = L.layerGroup();
 export const amenityLayer = L.layerGroup();
 
-export function drawBuildings(data, buildingLayer) {
+export function drawBuildings(data, layer) {
   const nodeMap = buildNodeMap(data.elements);
 
   data.elements.forEach((el) => {
     if (el.type !== "way") return;
 
-    const coords = el.nodes.map((id) => nodeMap[id]);
+    const coords = el.nodes.map((id) => nodeMap[id]).filter(Boolean);
+
+    if (coords.length < 3) return;
 
     L.polygon(coords, {
       color: "blue",
       weight: 1,
       fillOpacity: 0.5,
-    }).addTo(buildingLayer);
+    }).addTo(layer);
   });
 }
 
-export function drawRoads(data, roadLayer) {
+export function drawRoads(data, layer) {
   const nodeMap = buildNodeMap(data.elements);
 
   data.elements.forEach((el) => {
@@ -47,83 +36,39 @@ export function drawRoads(data, roadLayer) {
       color: "red",
       weight: 2,
       opacity: 0.8,
-    }).addTo(roadLayer);
+    }).addTo(layer);
   });
 }
 
-export function drawAmenities(data, amenityLayer) {
+export function drawAmenities(data, layer) {
   const nodeMap = buildNodeMap(data.elements);
 
-  const usedNodes = new Set();
-
   data.elements.forEach((el) => {
-    if (el.type === "way" && el.nodes) {
-      el.nodes.forEach((id) => usedNodes.add(id));
-    }
-  });
-
-  data.elements.forEach((el) => {
-    if (el.type !== "way" || !el.nodes) return;
-
-    const coords = el.nodes.map((id) => nodeMap[id]).filter(Boolean);
-
-    if (coords.length >= 3) {
-      L.polygon(coords, {
+    if (el.type === "node") {
+      L.circleMarker([el.lat, el.lon], {
+        radius: 6,
         color: "yellow",
-        weight: 1,
-        fillOpacity: 0.4,
       })
-        .bindPopup(el.tags?.amenity || "amenity area")
-        .addTo(amenityLayer);
+        .bindPopup(el.tags?.amenity || "amenity")
+        .addTo(layer);
     }
-  });
-
-  data.elements.forEach((el) => {
-    if (el.type !== "node") return;
-
-    if (usedNodes.has(el.id)) return;
-
-    L.circleMarker([el.lat, el.lon], {
-      radius: 6,
-      color: "yellow",
-      weight: 1,
-      fillOpacity: 0.8,
-    })
-      .bindPopup(el.tags?.amenity || "amenity")
-      .addTo(amenityLayer);
   });
 }
 
-/**
- * Removes all the map drawn objects in the leaflet
- */
-export function clearLayers(buildingLayer, roadLayer, amenityLayer) {
+export function clearLayers(...layers) {
+  layers.forEach((layer) => layer.clearLayers());
+}
+
+export function resetMapLayers(map, state) {
+  if (state.marker) {
+    map.removeLayer(state.marker);
+  }
+
+  if (state.circle) {
+    map.removeLayer(state.circle);
+  }
+
   buildingLayer.clearLayers();
   roadLayer.clearLayers();
   amenityLayer.clearLayers();
-}
-
-// Calculations
-/** 
- * Convert OSM road data into Turf LineStrings
- */
-export function buildRoadFeatures(data) {
-  const nodeMap = buildNodeMap(data.elements);
-  const roads = [];
-
-  data.elements.forEach((el) => {
-    if (el.type !== "way") return;
-
-    const coords = el.nodes
-      .map((id) => nodeMap[id])
-      .filter(Boolean);
-
-    if (coords.length < 2) return;
-
-    roads.push(
-      turf.lineString(coords.map(([lat, lng]) => [lng, lat]))
-    );
-  });
-
-  return roads;
 }
