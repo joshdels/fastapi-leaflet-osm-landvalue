@@ -9,6 +9,7 @@ this uses the public data osm to asses the location of whats nearby
 1. fastapi
 2. leaflet
 3. jinja
+4. chart.js
 
 ---
 
