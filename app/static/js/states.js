@@ -1,3 +1,7 @@
+/*
+This enables the what state is the button button, charts
+*/
+
 import { map } from "./map.js";
 import { clearAllData, state } from "./storage.js";
 import { resetMapLayers } from "./layers.js";
@@ -23,6 +27,7 @@ export function disableGenerateData() {
   generateData = false;
   button.classList.remove("disable");
 }
+
 
 export function updateRoadDistanceUI() {
   const roadDistance = document.getElementById("road-distance");

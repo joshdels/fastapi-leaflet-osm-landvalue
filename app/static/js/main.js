@@ -1,3 +1,7 @@
+/*
+ This is the main file for all the logic. Its a still messy in my current level but I'll know I'll slowly level-up 
+ */
+
 import { map } from "./map.js";
 import { fetchAmenities, fetchBuildings, fetchRoads } from "./api.js";
 import { state } from "./storage.js";
@@ -85,14 +89,14 @@ map.on("click", async (e) => {
   state.nearestRoad = nearest;
   state.roadDistance = nearest.distance;
   updateRoadDistanceUI();
-  
+
   updateChart(nearest.distance);
 
   state.nearestRoad = L.geoJSON(nearest.road, {
     style: {
       color: "green",
       weight: 5,
-      pane: "roadsPane"
+      pane: "roadsPane",
     },
   }).addTo(roadLayer);
 });

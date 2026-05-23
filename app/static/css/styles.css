@@ -22,6 +22,11 @@ p {
   opacity: 0.6;
 }
 
+#map {
+  flex: 1;
+  height: 100vh;
+}
+
 #sidebar {
   text-align: center;
   width: 320px;
@@ -32,18 +37,14 @@ p {
 
   padding: 2rem;
   box-sizing: border-box;
-
   overflow-y: auto;
+  z-index: 100;
+  border: 1px solid rgb(65, 65, 65, 0.3);
 }
 
 #sidebar footer {
   padding-top: 2rem;
   margin-top: auto;
-}
-
-#map {
-  flex: 1;
-  height: 100vh;
 }
 
 main {
@@ -114,3 +115,5 @@ main #chart {
 .more-information:hover {
   color: rgb(101, 26, 172);
 }
+
+

@@ -1,6 +1,8 @@
+/*
+This module handles the map layers rendering in the leaflet map such as the Open Street Map(OSM) data 
+*/
+
 import { buildNodeMap, formatTags } from "./transformers.js";
-
-
 
 export const buildingLayer = L.layerGroup();
 export const roadLayer = L.layerGroup();
@@ -90,6 +92,10 @@ export function drawAmenities(data, layer) {
   });
 }
 
+/**
+ * Clears all the object layers
+ * 
+ */
 export function clearLayers(...layers) {
   layers.forEach((layer) => layer.clearLayers());
 }

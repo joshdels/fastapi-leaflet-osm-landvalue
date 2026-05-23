@@ -1,3 +1,8 @@
+/*
+This calculates the road nears distance to the point coordinates.
+This also creates the engine for the calculation 
+*/
+
 import { state } from "./storage.js";
 
 /**

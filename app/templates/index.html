@@ -3,20 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Land Estimate</title>
-    <link rel="stylesheet" href="/static/css/map.css" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
-    />
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Living Urban</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <link rel="stylesheet" href="/static/lib/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="/static/lib/geocoder/Control.Geocoder.css" />
+
+    <script src="/static/lib/leaflet/leaflet.js"></script>
+    <script src="/static/lib/turf.min.js"></script>
+    <script src="/static/lib/geocoder/Control.Geocoder.js"></script>
+    <script src="/static/lib/chart.js"></script>
   </head>
   <body>
     <aside id="sidebar">
@@ -31,7 +26,7 @@
           <canvas id="chart"></canvas>
         </div>
         <div class="road-result">
-          <div>The nearest walking distance is:</div>
+          <div>Walking distance to nearest road:</div>
           <div class="road-distance">
             <span id="road-distance">0</span> meters
           </div>

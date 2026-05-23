@@ -1,8 +1,16 @@
+/*
+Initialize the leaflet map, including the layers, geolocation, basemaps and legends
+*/
+
 import { amenityLayer, buildingLayer, roadLayer } from "./layers.js";
 
+/**
+ * 
+  Creates the map engine using leaflet library
+ */
 export const map = L.map("map", {
-  center: [7.2, 124.2],
-  zoom: 8,
+  center: [7.5907, 125.4553],
+  zoom: 5,
 });
 
 const osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");

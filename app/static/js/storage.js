@@ -1,3 +1,15 @@
+/*
+  Stores all the data, maybe a bad practice to me who knows. I'll add some local storage for persistent data per user 
+*/
+
+/**
+ * This will serve as the current state in the map
+ *
+ * How to use?
+ * state.maker
+ *
+ * resulting to the string/int/objects/array content of it
+ */
 export const state = {
   marker: null,
   circle: null,

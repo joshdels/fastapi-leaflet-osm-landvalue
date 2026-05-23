@@ -1,4 +1,9 @@
+/*
+This activities are for the charts pattern
+*/
+
 let chartInstance = null;
+
 
 export function initChart() {
   const ctx = document.getElementById("chart");

@@ -2,8 +2,8 @@ services:
   app:
     container_name: fastapi-landvalue
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../
+      dockerfile: .docker/Dockerfile
     ports:
       - "8005:8000" 
     restart: unless-stopped

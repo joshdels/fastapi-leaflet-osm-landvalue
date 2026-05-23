@@ -30,7 +30,7 @@ jobs:
             git reset --hard origin/main
 
             echo "--- Building Docker Images ---"
-            docker-compose up -d --build
+            docker-compose -f docker-compose.yaml up -d --build
 
             echo "--- Runing Post-Deployment Cleanup ---"
             docker image prune -f 
