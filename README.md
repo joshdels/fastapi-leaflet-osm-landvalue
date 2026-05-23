@@ -51,7 +51,7 @@ Developers, GIS professionals, and planners exploring public urban datasets.
 
 ### Screenshot
 
-![Image]("/public/version1.png")
+![Image](public/version1.png)
 `1st version`
 
 ---
@@ -169,5 +169,5 @@ git push origin feature/your-feature-name
 This project is still experimental and evolving rapidly.
 Alot of spaghetti code and newbie mistake (hehe).
 Expect refactors in architecture, scoring systems, and data pipelines as the project grows.
-To a better and accessible urban data.
-`Joshua 2026`
+To a better and accessible urban data for Southeast Asia, staring from Philippines.
+*Joshua 2026*
