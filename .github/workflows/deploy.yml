@@ -29,6 +29,9 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
 
+            echo "--- Stopping old containers ---"
+            docker-compose -f .docker/docker-compose.yaml down
+
             echo "--- Building Docker Images ---"
             docker-compose -f .docker/docker-compose.yaml up -d --build
 
