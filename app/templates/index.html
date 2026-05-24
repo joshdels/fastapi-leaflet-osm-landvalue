@@ -12,15 +12,13 @@
     <script src="/static/lib/turf.min.js"></script>
     <script src="/static/lib/geocoder/Control.Geocoder.js"></script>
     <script src="/static/lib/chart.js"></script>
+    <script src="/static/lib/lucide.min.js"></script>
   </head>
   <body>
     <aside id="sidebar">
+      <h1>Urban Living Estimate Valuation</h1>
       <main>
-        <h1>Land Location Estimate Valuation</h1>
-        <p>
-          Supporting your assessment of your selected land area. Currently 200
-          meter radius estimation
-        </p>
+        <p>Analyze land value within 200m radius</p>
         <h3>Overall Report</h3>
         <div class="chart">
           <canvas id="chart"></canvas>
@@ -43,7 +41,17 @@
       </footer>
     </aside>
 
-    <main id="map"></main>
+    <main id="map">
+      <button class="sidebar-toggler" title="Collapse sidebar">
+        <i data-lucide="panel-left-close"></i>
+      </button>
+      <button id="mobile" class="mobile">
+        <i data-lucide="locate-fixed"></i>
+      </button>
+    </main>
   </body>
   <script type="module" src="/static/js/main.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 </html>

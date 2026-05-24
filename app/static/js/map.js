@@ -9,6 +9,7 @@ import { amenityLayer, buildingLayer, roadLayer } from "./layers.js";
   Creates the map engine using leaflet library
  */
 export const map = L.map("map", {
+  attributionControl: false,
   center: [7.5907, 125.4553],
   zoom: 5,
 });

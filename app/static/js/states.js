@@ -9,15 +9,16 @@ import { resetMapLayers } from "./layers.js";
 export let generateData = true;
 
 const button = document.getElementById("new-data");
+const mobileBtn = document.querySelector(".mobile");
 const roadDistance = document.getElementById("road-distance");
 
-button.addEventListener("click", function (e) {
-  enableGenerateData();
-});
+button.addEventListener("click", enableGenerateData);
+mobileBtn.addEventListener("click", enableGenerateData);
 
 export function enableGenerateData() {
   generateData = true;
   button.classList.add("disable");
+  mobileBtn.classList.add("mobile-disable");
   resetMapLayers(map, state);
   clearAllData();
   clearUI();
@@ -26,8 +27,8 @@ export function enableGenerateData() {
 export function disableGenerateData() {
   generateData = false;
   button.classList.remove("disable");
+  mobileBtn.classList.remove("mobile-disable");
 }
-
 
 export function updateRoadDistanceUI() {
   const roadDistance = document.getElementById("road-distance");
