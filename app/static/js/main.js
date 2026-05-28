@@ -2,16 +2,16 @@
  This is the main file for all the logic. Its a still messy in my current level but I'll know I'll slowly level-up 
  */
 
-import { map } from "./map.js";
+import { map } from "./map/map.js";
 import { fetchAmenities, fetchBuildings, fetchRoads } from "./api.js";
-import { state } from "./storage.js";
-import { buildRoadFeatures } from "./transformers.js";
-import { findNearestRoad, getDistanceScore } from "./calculation.js";
+import { state } from "./storage/storage.js";
+import { buildRoadFeatures } from "./utils/transformers.js";
+import { findNearestRoad, getDistanceScore } from "./analysis/calculation.js";
 import {
   generateData,
   disableGenerateData,
   updateRoadDistanceUI,
-} from "./states.js";
+} from "./components/states.js";
 import {
   clearLayers,
   drawBuildings,
@@ -22,7 +22,7 @@ import {
   roadLayer,
   resetMapLayers,
 } from "./layers.js";
-import { initChart, updateChart } from "./chart.js";
+import { initChart, updateChart } from "./analysis/chart.js";
 
 initChart();
 
