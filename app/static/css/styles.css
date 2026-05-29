@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
+@import url("./icons.css");
+@import url("./sidebar.css");
+@import url("./mobile.css");
+@import url("./nav.css");
+@import url("./map.css");
+
+:root {
+  --color-primary: blueviolet;
+}
+
 html,
 body,
 * {
@@ -9,8 +19,9 @@ body,
 }
 
 body {
-  display: flex;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -22,96 +33,7 @@ p {
   opacity: 0.6;
 }
 
-#map {
-  flex: 1;
-  height: 100vh;
-}
-
-#sidebar {
-  text-align: center;
-  width: 320px;
-  height: 100vh;
-
+.layout {
   display: flex;
-  flex-direction: column;
-
-  padding: 2rem;
-  box-sizing: border-box;
-  overflow-y: auto;
-  z-index: 100;
-  border: 1px solid rgb(65, 65, 65, 0.3);
-}
-
-#sidebar footer {
-  padding-top: 2rem;
-  margin-top: auto;
-}
-
-main {
-  display: flex;
-}
-
-.new-data {
-  background-color: blueviolet;
-  border: none;
-  width: 100%;
-  height: 50px;
-  border-radius: 8px;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s all ease-in-out;
-}
-
-.new-data:hover {
-  background-color: rgb(101, 26, 172);
-}
-
-.disable {
-  background-color: gray;
-  pointer-events: none;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-main .chart {
-  width: 100%;
-  height: 30vh;
-  border: 1px solid gray;
-  border-radius: 10px;
-  padding: 0.5rem;
-}
-
-main #chart {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.road-result {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.road-distance {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.more-information {
-  border: none;
-  background-color: white;
-  color: blueviolet;
-  font-size: 1.1rem;
-  transition: 0.2s all ease-in-out;
-  cursor: pointer;
-}
-
-.more-information:hover {
-  color: rgb(101, 26, 172);
+  height: calc(100vh - (30px + 2rem));
 }

@@ -23,6 +23,8 @@ import {
   resetMapLayers,
 } from "./map/layers.js";
 import { initChart, updateChart } from "./analysis/chart.js";
+import { initSidebarControl } from "./components/sidebar.js";
+import { initMobileLocation } from "./components/button.js";
 
 initChart();
 
@@ -100,3 +102,7 @@ map.on("click", async (e) => {
     },
   }).addTo(roadLayer);
 });
+
+// Initializations
+initSidebarControl(map);
+initMobileLocation(map);

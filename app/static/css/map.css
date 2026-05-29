@@ -1,0 +1,6 @@
+#map {
+  flex: 1;
+  height: calc(100vh -50px);
+  position: relative;
+  transition: all 0.3s ease;
+}

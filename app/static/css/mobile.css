@@ -1,0 +1,36 @@
+/* Mobile Configuration */
+
+.mobile {
+  display: inline-flex;
+  position: absolute;
+  z-index: 1000;
+  bottom: 10px;
+  right: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 10%;
+  color: white;
+  font-size: 50px;
+  border: none;
+  background: var(--color-primary);
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.mobile i svg {
+  width: 50px;
+  height: 50px;
+}
+
+.mobile-disable {
+  background-color: gray;
+  pointer-events: none;
+}
+
+@media screen and (width >= 768px) {
+  .mobile {
+    display: none;
+  }
+}

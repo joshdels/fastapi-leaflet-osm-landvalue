@@ -1,0 +1,98 @@
+/* Sidebar Styling of the map */
+
+#sidebar {
+  display: block;
+  text-align: center;
+  width: 320px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem 1.2rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+  border-right: 1px solid rgb(65, 65, 65, 0.3);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#sidebar.collapsed {
+  transform: translateX(-100%);
+  display: none;
+}
+
+#sidebar footer {
+  display: none;
+}
+
+.new-data {
+  background-color: blueviolet;
+  border: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
+}
+
+.new-data:hover {
+  background-color: rgb(101, 26, 172);
+}
+
+.disable {
+  background-color: gray;
+  pointer-events: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+main .chart {
+  width: 100%;
+  height: 30vh;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+main #chart {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.road-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.road-distance {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.more-information {
+  border: none;
+  background-color: white;
+  color: blueviolet;
+  font-size: 1.1rem;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+}
+
+.more-information:hover {
+  color: rgb(101, 26, 172);
+}
+
+@media screen and (width >= 768px) {
+  #sidebar footer {
+    display: inline;
+    padding-top: 2rem;
+    margin-top: auto;
+  }
+}
