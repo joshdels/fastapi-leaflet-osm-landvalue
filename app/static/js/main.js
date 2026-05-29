@@ -45,8 +45,8 @@ map.on("click", async (e) => {
 
   state.circle = L.circle([lat, lng], {
     radius: 200,
-    color: "blue",
-    fillColor: "#3b82f6",
+    color: "rgb(104, 43, 202)",
+    fillColor: "#843df8",
     fillOpacity: 0.3,
   }).addTo(map);
 

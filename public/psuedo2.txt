@@ -1,0 +1,13 @@
+May 26, 2026
+
+v.1.0.0.2
+
+CLICK Map
+  Appear State in small box in the map 
+  (Fetching, Loading, Success, Fail)
+
+FETCH lulc arcgis
+
+INSTRUCTION HOW TO USE
+  - add do not show again
+  - add BUTTON "?"

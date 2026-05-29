@@ -21,6 +21,10 @@ const satellite = L.tileLayer(
 const google = L.tileLayer(
   "https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}",
 );
+const blank = L.tileLayer("", {
+  attribution: "",
+  noWrap: true,
+});
 
 osm.addTo(map);
 
@@ -34,8 +38,9 @@ map.getPane("amenitiesPane").style.zIndex = 400;
 
 const baseMaps = {
   Streets: osm,
-  Satellite: satellite,
   Google: google,
+  Satellite: satellite,
+  Blank: blank,
 };
 
 const overlayMaps = {
