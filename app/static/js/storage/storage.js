@@ -3,45 +3,121 @@
 */
 
 /**
- * This will serve as the current state in the map
- *
- * How to use?
- * state.maker
- *
- * resulting to the string/int/objects/array content of it
+  A class that holds the map data such as lat and lng into the marker and the data for osm data fetched
  */
-export const state = {
-  marker: null,
-  circle: null,
-  nearestRoad: null,
-  roadDistance: null,
-  buildingDatas: [],
-  roadDatas: [],
-  amenityDatas: [],
 
-  roadScore: null,
-  buildingScore: null,
-  amenityScore: null,
-  overallScore: null,
+export class MapState {
+  constructor() {
+    this.reset();
+  }
 
-  center: [],
-  radius: null,
-};
+  reset() {
+    this.marker = null;
+    this.circle = null;
 
-export function clearAllData() {
-  state.marker = null;
-  state.circle = null;
-  state.nearestRoad = null;
-  state.roadDistance = null;
-  state.buildingDatas = [];
-  state.roadDatas = [];
-  state.amenityDatas = [];
+    this.nearestRoad = null;
+    this.roadDistance = null;
 
-  state.roadScore = null;
-  state.buildingScore = null;
-  state.amenityScore = null;
-  state.overallScore = null;
+    this.buildingDatas = [];
+    this.roadDatas = [];
+    this.amenityDatas = [];
 
-  state.center = [];
-  state.radius = null;
+    this.roadScore = null;
+    this.buildingScore = null;
+    this.amenityScore = null;
+    this.overallScore = null;
+
+    this.center = [];
+    this.radius = null;
+  }
+
+  setMarker(marker) {
+    this.marker = marker;
+  }
+
+  setCircle(circle) {
+    this.circle = circle;
+  }
+
+  clearMapObjects() {
+    this.marker = null;
+    this.circle = null;
+  }
+
+  setBuildingData(data) {
+    this.buildingDatas = data;
+  }
+
+  setRoadData(data) {
+    this.roadDatas = data;
+  }
+
+  setAmenityData(data) {
+    this.amenityDatas = data;
+  }
+
+  clearDatasets() {
+    this.buildingDatas = [];
+    this.roadDatas = [];
+    this.amenityDatas = [];
+  }
+
+  setNearestRoad(road) {
+    this.nearestRoad = road;
+  }
+
+  setRoadDistance(distance) {
+    this.roadDistance = distance;
+  }
+
+  setScores({ roadScore, buildingScore, amenityScore, overallScore }) {
+    this.roadScore = roadScore;
+    this.buildingScore = buildingScore;
+    this.amenityScore = amenityScore;
+    this.overallScore = overallScore;
+  }
+
+  clearAnalysis() {
+    this.nearestRoad = null;
+    this.roadDistance = null;
+
+    this.roadScore = null;
+    this.buildingScore = null;
+    this.amenityScore = null;
+    this.overallScore = null;
+  }
+
+  setSearch(center, radius) {
+    this.center = center;
+    this.radius = radius;
+  }
+
+  clearSearch() {
+    this.center = [];
+    this.radius = null;
+  }
+
+  getSnapshot() {
+    return {
+      marker: this.marker,
+      circle: this.circle,
+
+      nearestRoad: this.nearestRoad,
+      roadDistance: this.roadDistance,
+
+      buildingDatas: this.buildingDatas,
+      roadDatas: this.roadDatas,
+      amenityDatas: this.amenityDatas,
+
+      roadScore: this.roadScore,
+      buildingScore: this.buildingScore,
+      amenityScore: this.amenityScore,
+      overallScore: this.overallScore,
+
+      center: this.center,
+      radius: this.radius,
+    };
+  }
 }
+
+export const state = new MapState();

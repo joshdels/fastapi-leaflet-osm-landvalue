@@ -28,8 +28,8 @@ map.createPane("roadsPane");
 map.createPane("amenitiesPane");
 
 map.getPane("buildingsPane").style.zIndex = 400;
-map.getPane("roadsPane").style.zIndex = 450;
-map.getPane("amenitiesPane").style.zIndex = 650;
+map.getPane("roadsPane").style.zIndex = 400;
+map.getPane("amenitiesPane").style.zIndex = 400;
 
 const baseMaps = {
   Streets: osm,

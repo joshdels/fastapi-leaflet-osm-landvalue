@@ -3,8 +3,8 @@ This enables the what state is the button button, charts
 */
 
 import { map } from "../map/map.js";
-import { clearAllData, state } from "../storage/storage.js";
-import { resetMapLayers } from "./layers.js";
+import { state } from "../storage/storage.js";
+import { resetMapLayers } from "../map/layers.js";
 
 export let generateData = true;
 
@@ -19,7 +19,7 @@ export function enableGenerateData() {
   generateData = true;
   button.classList.add("disable");
   resetMapLayers(map, state);
-  clearAllData();
+  state.clearDatasets()
   clearUI();
 }
 

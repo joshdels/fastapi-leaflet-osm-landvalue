@@ -1,8 +1,7 @@
 /*
 This module handles the map layers rendering in the leaflet map such as the Open Street Map(OSM) data 
 */
-
-import { buildNodeMap, formatTags } from "./transformers.js";
+import { buildNodeMap, formatTags } from "../utils/transformers.js";
 
 export const buildingLayer = L.layerGroup();
 export const roadLayer = L.layerGroup();

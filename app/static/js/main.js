@@ -3,7 +3,7 @@
  */
 
 import { map } from "./map/map.js";
-import { fetchAmenities, fetchBuildings, fetchRoads } from "./api.js";
+import { fetchAmenities, fetchBuildings, fetchRoads } from "./api/api.js";
 import { state } from "./storage/storage.js";
 import { buildRoadFeatures } from "./utils/transformers.js";
 import { findNearestRoad, getDistanceScore } from "./analysis/calculation.js";
@@ -21,7 +21,7 @@ import {
   amenityLayer,
   roadLayer,
   resetMapLayers,
-} from "./layers.js";
+} from "./map/layers.js";
 import { initChart, updateChart } from "./analysis/chart.js";
 
 initChart();
